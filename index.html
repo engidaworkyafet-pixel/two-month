@@ -170,10 +170,39 @@
             <h1>IK YOU CHOSE BUT WHY NOT CHOOSE AGAIN🤷‍♂️🙂</h1>
             <p class="subtext">YOUR GORGEOUS BTW😍</p>
             <div class="options-grid">
-                <button onclick="saveChoice('activity', 'Cinema 🍿'); nextStep(3)">
+                <button onclick="saveChoice('activity', 'Cinema 🍿'); nextStep('genre')">
                     <span class="opt-num">01</span>
                     <span class="opt-title">Cinema 🍿</span>
                     <span class="opt-desc">I have never been there before, and I would love for my first time to be with you.</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- PAGE 2.5: Movie Genre Selection -->
+        <div id="stepgenre" class="step">
+            <div class="overline">MOVIE TIME</div>
+            <h1>WHAT GENRE SHOULD WE WATCH?</h1>
+            <p class="subtext">Pick the vibe for the screen!</p>
+            <div class="options-grid">
+                <button onclick="saveChoice('genre', 'Romance 💖'); nextStep(3)">
+                    <span class="opt-num">01</span>
+                    <span class="opt-title">Romance 💖</span>
+                    <span class="opt-desc">Something sweet and heartwarming.</span>
+                </button>
+                <button onclick="saveChoice('genre', 'Horror 👻'); nextStep(3)">
+                    <span class="opt-num">02</span>
+                    <span class="opt-title">Horror 👻</span>
+                    <span class="opt-desc">An excuse to get closer when it gets scary!</span>
+                </button>
+                <button onclick="saveChoice('genre', 'Comedy 😂'); nextStep(3)">
+                    <span class="opt-num">03</span>
+                    <span class="opt-title">Comedy 😂</span>
+                    <span class="opt-desc">Laughing together the whole time.</span>
+                </button>
+                <button onclick="saveChoice('genre', 'Action 🎬'); nextStep(3)">
+                    <span class="opt-num">04</span>
+                    <span class="opt-title">Action 🎬</span>
+                    <span class="opt-desc">Exciting scenes and high energy.</span>
                 </button>
             </div>
         </div>
@@ -228,6 +257,7 @@
     <script>
         let choices = {
             activity: 'Cinema 🍿',
+            genre: '',
             food: '',
             date: ''
         };
@@ -253,7 +283,9 @@
         // Move to the next page
         function nextStep(step) {
             document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
-            document.getElementById('step' + step).classList.add('active');
+            // Check if step is a string (like 'genre') or number
+            const targetId = typeof step === 'string' ? 'step' + step : 'step' + step;
+            document.getElementById(targetId).classList.add('active');
             
             if (step === 4) {
                 renderCalendar();
@@ -312,13 +344,14 @@
                     const dateString = currentDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
                     saveChoice('date', dateString);
                     
-                    const msg = `We are doing ${choices.activity}, eating ${choices.food}, on ${dateString}. Can't wait!`;
+                    const msg = `We are doing ${choices.activity} (${choices.genre}), eating ${choices.food}, on ${dateString}. Can't wait!`;
                     document.getElementById('finalMessage').innerText = msg;
                     nextStep(5);
                 };
                 
                 grid.appendChild(dateCell);
             }
-        }    </script>
+        }
+    </script>
 </body>
 </html>
