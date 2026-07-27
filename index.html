@@ -265,12 +265,17 @@
             choices[key] = value;
         }
 
-        // Generate custom custom calendar starting from Monday (July 27) to next Sunday (August 9)
+       // Generate August 2026 Calendar dynamically with your specific blocked rules
         function renderCalendar() {
             const grid = document.getElementById('calendarGrid');
             grid.innerHTML = '';
             
-            const weekDays = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+            const year = 2026;
+            const month = 7; // August (0-indexed, 7 = August)
+            const firstDayIndex = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            
+            const weekDays = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
             weekDays.forEach(day => {
                 const dayHeader = document.createElement('div');
                 dayHeader.innerText = day;
@@ -281,35 +286,39 @@
                 grid.appendChild(dayHeader);
             });
             
-            // Start date: Monday, July 27, 2026
-            let startDate = new Date(2026, 6, 27);
+            for (let i = 0; i < firstDayIndex; i++) {
+                const emptyCell = document.createElement('div');
+                grid.appendChild(emptyCell);
+            }
             
-            // Render 14 days (2 full weeks: Monday to Sunday, then Monday to Sunday)
-            for (let i = 0; i < 14; i++) {
-                let currentDate = new Date(startDate);
-                currentDate.setDate(startDate.getDate() + i);
-                
+            for (let day = 1; day <= daysInMonth; day++) {
                 const dateCell = document.createElement('div');
-                dateCell.innerText = currentDate.getDate();
+                dateCell.innerText = day;
                 dateCell.style.padding = '10px 4px';
                 dateCell.style.borderRadius = '8px';
                 dateCell.style.fontSize = '13px';
                 dateCell.style.fontWeight = '600';
                 dateCell.style.transition = 'all 0.2s';
                 
+                const currentDate = new Date(year, month, day);
+                const dayOfWeek = currentDate.getDay(); // 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
+                
                 let isBlocked = false;
                 let blockReason = "";
 
-                // Block Thursday, July 30 and Saturday, August 1
-                let m = currentDate.getMonth(); // 6 = July, 7 = August
-                let d = currentDate.getDate();
-                
-                if (m === 6 && d === 30) {
+                // Blocked rules: Tue, Wed, Thu, Sat of this week (Aug 1 - Aug 8) + Mon of next week (Aug 3)
+                if (day === 1 && dayOfWeek === 6) {
                     isBlocked = true;
-                    blockReason = "This Thursday is blocked for graduation! Pick another day ❤️";
-                } else if (m === 7 && d === 1) {
-                    isBlocked = true;
-                    blockReason = "This Saturday is blocked for graduation! Pick another day ❤️";
+                    blockReason = "Saturday of this week is blocked! Pick another day ❤️";
+                } else if (day >= 2 && day <= 8) {
+                    if (dayOfWeek === 2 || dayOfWeek === 3 || dayOfWeek === 4) {
+                        isBlocked = true;
+                        blockReason = "Tuesday, Wednesday, and Thursday of this week are blocked! Pick another day ❤️";
+                    }
+                    if (day === 3 && dayOfWeek === 1) {
+                        isBlocked = true;
+                        blockReason = "Next week Monday is blocked! Pick another day ❤️";
+                    }
                 }
 
                 if (isBlocked) {
