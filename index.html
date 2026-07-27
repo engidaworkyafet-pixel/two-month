@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Open Graph / Link Preview Tags -->
+    <meta property="og:title" content="For You ❤️ | Two Months of Us">
+<meta property="og:description" content="HOPE YOU LIKE IT">
+<meta property="og:image" content="https://our-60days-aka-2months.netlify.app/ourphoto.jpg">
+<meta property="og:image:secure_url" content="https://our-60days-aka-2months.netlify.app/ourphoto.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://our-60days-aka-2months.netlify.app/">
+<meta property="og:type" content="website">
+	
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Months</title>
+    <!-- Importing elegant fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #13111C;
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #e5e5e5;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background: #1E1B29;
+            padding: 30px 20px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            max-width: 500px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .overline {
+            color: #FF79A1;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        h1 { 
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #ffffff; 
+            font-size: 26px;
+            margin: 0 0 15px 0;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        p.subtext {
+            color: #a09eb0;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .step { display: none; }
+        .step.active { display: block; }
+        
+        button {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            border: none;
+            padding: 14px 24px;
+            font-size: 14px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 8px;
+            transition: all 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        button.primary {
+            background-color: #FF79A1;
+            color: #13111C;
+        }
+        button.primary:hover {
+            background-color: #ff91b1;
+            transform: scale(1.03);
+        }
+        button.secondary {
+            background-color: #2A263D;
+            color: #e5e5e5;
+        }
+        button.secondary:hover {
+            background-color: #37324d;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .options-grid button {
+            background-color: #2A263D;
+            border-radius: 12px;
+            margin: 0;
+            padding: 16px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+        .options-grid button:hover {
+            background-color: #37324d;
+        }
+        .opt-num { color: #FF79A1; font-size: 10px; font-weight: 700; margin-bottom: 6px; }
+        .opt-title { color: #ffffff; font-size: 15px; margin-bottom: 4px; }
+        .opt-desc { color: #a09eb0; font-size: 12px; font-weight: 400; line-height: 1.4; }
+
+        /* Custom Calendar Grid Styling */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+            margin-top: 15px;
+        }
+
+        #finalMessage {
+            font-size: 18px;
+            color: #FF79A1;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            line-height: 1.5;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- PAGE 0: Your Love Letter -->
+        <div id="step0" class="step active">
+            <div class="overline">TWO MONTHS OF US😁</div>
+            <h1>STAYED UP A LITTLE LATE FOR THIS..</h1>
+            
+            <p class="subtext">
+                For every laugh, every soft moment, and every reason you’ve made these two months feel like my favorite place to be.
+            </p>
+
+            <button class="secondary" onclick="nextStep(1)">OWWWWW cute isn't it😊</button>
+        </div>
+
+        <!-- PAGE 1: The Question -->
+        <div id="step1" class="step">
+            <h1>WILL YOU GO ON A DATE WITH ME?</h1>
+            <p class="subtext">I PROMISE: GOOD FOOD, A LITTLE TIME TOGETHER, AND DIDNT OVERTHINK AT ALL.</p>
+            <div style="position: relative; height: 100px; margin-top: 20px;">
+                <button id="btnYes" class="primary" onclick="nextStep(2)">YES ♡</button>
+                <button id="btnNo" class="secondary" onmouseover="moveNoButton()" onclick="moveNoButton()">NO</button>
+            </div>
+        </div>
+
+        <!-- PAGE 2: The Activity -->
+        <div id="step2" class="step">
+            <div class="overline">WHENEVER YOU CAN</div>
+            <h1>IK YOU CHOSE BUT WHY NOT CHOOSE AGAIN🤷‍♂️🙂</h1>
+            <p class="subtext">YOUR GORGEOUS BTW😍</p>
+            <div class="options-grid">
+                <button onclick="saveChoice('activity', 'Cinema 🍿'); nextStep(3)">
+                    <span class="opt-num">01</span>
+                    <span class="opt-title">Cinema 🍿</span>
+                    <span class="opt-desc">I have never been there before, and I would love for my first time to be with you.</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- PAGE 3: The Food -->
+        <div id="step3" class="step">
+            <h1>WHAT SHOULD WE EAT?</h1>
+            <p class="subtext">Since ur picky, which is gd</p>
+            <div class="options-grid">
+                <button onclick="saveChoice('food', 'Pizza 🍕'); nextStep(4)">
+                    <span class="opt-num">01</span>
+                    <span class="opt-title">Pizza 🍕</span>
+                    <span class="opt-desc">Classic, basic but classic</span>
+                </button>
+                <button onclick="saveChoice('food', 'Wrap 🌯'); nextStep(4)">
+                    <span class="opt-num">02</span>
+                    <span class="opt-title">Wrap 🌯</span>
+                    <span class="opt-desc">Dono other options sry😭</span>
+                </button>
+                <button onclick="saveChoice('food', 'Burgers 🍔'); nextStep(4)">
+                    <span class="opt-num">03</span>
+                    <span class="opt-title">Burgers 🍔</span>
+                    <span class="opt-desc">Classic, same as pizza basic but classic</span>
+                </button>
+                <button onclick="saveChoice('food', 'Dessert / Ice Cream 🍦'); nextStep(4)">
+                    <span class="opt-num">04</span>
+                    <span class="opt-title">Dessert / Ice Cream 🍦</span>
+                    <span class="opt-desc">Sweet treats to celebrate us. And you love sweets and me too</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- PAGE 4: The Date (Interactive Calendar) -->
+        <div id="step4" class="step">
+            <div class="overline">JULY - AUGUST 2026</div>
+            <h1>PICK A DAY FOR OUR DATE</h1>
+            <p class="subtext">Thursday and Saturday are blocked (grad) mom told me to go still hasnt decide❤️</p>
+            
+            <div id="calendarGrid" class="calendar-grid"></div>
+        </div>
+
+        <!-- PAGE 5: Confirmation -->
+        <div id="step5" class="step">
+            <div class="overline">IT'S A DATE</div>
+            <h1>SEE YOU THEN. ♡</h1>
+            <div id="finalMessage"></div>
+            <p class="subtext" style="margin-top: 25px;">TAKE A SCREENSHOT AND SEND IT TO ME!.luvvv youu mostttt!</p>
+        </div>
+
+    </div>
+
+    <script>
+        let choices = {
+            activity: 'Cinema 🍿',
+            food: '',
+            date: ''
+        };
+
+        // Make the No button run away and the Yes button grow
+        function moveNoButton() {
+            const btnNo = document.getElementById('btnNo');
+            const btnYes = document.getElementById('btnYes');
+            
+            const x = Math.random() * 140 - 70;
+            const y = Math.random() * 100 - 50;
+            btnNo.style.transform = `translate(${x}px, ${y}px)`;
+            
+            let currentSize = parseFloat(window.getComputedStyle(btnYes).fontSize);
+            let currentPadding = parseFloat(window.getComputedStyle(btnYes).padding);
+            
+            if (currentSize < 30) {
+                btnYes.style.fontSize = (currentSize * 1.15) + 'px';
+                btnYes.style.padding = (currentPadding * 1.15) + 'px';
+            }
+        }
+
+        // Move to the next page
+        function nextStep(step) {
+            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+            document.getElementById('step' + step).classList.add('active');
+            
+            if (step === 4) {
+                renderCalendar();
+            }
+        }
+
+        // Save what she clicks
+        function saveChoice(key, value) {
+            choices[key] = value;
+        }
+
+        // Generate custom custom calendar starting from Monday (July 27) to next Sunday (August 9)
+        function renderCalendar() {
+            const grid = document.getElementById('calendarGrid');
+            grid.innerHTML = '';
+            
+            const weekDays = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+            weekDays.forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.innerText = day;
+                dayHeader.style.color = '#7a7690';
+                dayHeader.style.fontSize = '11px';
+                dayHeader.style.fontWeight = '600';
+                dayHeader.style.padding = '6px 0';
+                grid.appendChild(dayHeader);
+            });
+            
+            // Start date: Monday, July 27, 2026
+            let startDate = new Date(2026, 6, 27);
+            
+            // Render 14 days (2 full weeks: Monday to Sunday, then Monday to Sunday)
+            for (let i = 0; i < 14; i++) {
+                let currentDate = new Date(startDate);
+                currentDate.setDate(startDate.getDate() + i);
+                
+                const dateCell = document.createElement('div');
+                dateCell.innerText = currentDate.getDate();
+                dateCell.style.padding = '10px 4px';
+                dateCell.style.borderRadius = '8px';
+                dateCell.style.fontSize = '13px';
+                dateCell.style.fontWeight = '600';
+                dateCell.style.transition = 'all 0.2s';
+                
+                let isBlocked = false;
+                let blockReason = "";
+
+                // Block Thursday, July 30 and Saturday, August 1
+                let m = currentDate.getMonth(); // 6 = July, 7 = August
+                let d = currentDate.getDate();
+                
+                if (m === 6 && d === 30) {
+                    isBlocked = true;
+                    blockReason = "This Thursday is blocked for graduation! Pick another day ❤️";
+                } else if (m === 7 && d === 1) {
+                    isBlocked = true;
+                    blockReason = "This Saturday is blocked for graduation! Pick another day ❤️";
+                }
+
+                if (isBlocked) {
+                    dateCell.style.backgroundColor = '#15131D';
+                    dateCell.style.color = '#3c374d';
+                    dateCell.style.cursor = 'not-allowed';
+                    dateCell.onclick = () => alert(blockReason);
+                } else {
+                    dateCell.style.backgroundColor = '#2A263D';
+                    dateCell.style.color = '#e5e5e5';
+                    dateCell.style.cursor = 'pointer';
+                    dateCell.onmouseover = () => { dateCell.style.backgroundColor = '#FF79A1'; dateCell.style.color = '#13111C'; };
+                    dateCell.onmouseout = () => { dateCell.style.backgroundColor = '#2A263D'; dateCell.style.color = '#e5e5e5'; };
+                    dateCell.onclick = () => {
+                        const dateString = currentDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+                        saveChoice('date', dateString);
+                        
+                        const msg = `We are doing ${choices.activity}, eating ${choices.food}, on ${dateString}. Can't wait!`;
+                        document.getElementById('finalMessage').innerText = msg;
+                        nextStep(5);
+                    };
+                }
+                grid.appendChild(dateCell);
+            }
+        }
+    </script>
+</body>
+</html>
