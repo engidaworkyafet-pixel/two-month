@@ -265,7 +265,7 @@
             choices[key] = value;
         }
 
-       // Generate August 2026 Calendar dynamically with your specific blocked rules
+      // Generate August 2026 Calendar dynamically with all days unblocked
         function renderCalendar() {
             const grid = document.getElementById('calendarGrid');
             grid.innerHTML = '';
@@ -301,49 +301,24 @@
                 dateCell.style.transition = 'all 0.2s';
                 
                 const currentDate = new Date(year, month, day);
-                const dayOfWeek = currentDate.getDay(); // 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
                 
-                let isBlocked = false;
-                let blockReason = "";
-
-                // Blocked rules: Tue, Wed, Thu, Sat of this week (Aug 1 - Aug 8) + Mon of next week (Aug 3)
-                if (day === 1 && dayOfWeek === 6) {
-                    isBlocked = true;
-                    blockReason = "Saturday of this week is blocked! Pick another day ❤️";
-                } else if (day >= 2 && day <= 8) {
-                    if (dayOfWeek === 2 || dayOfWeek === 3 || dayOfWeek === 4) {
-                        isBlocked = true;
-                        blockReason = "Tuesday, Wednesday, and Thursday of this week are blocked! Pick another day ❤️";
-                    }
-                    if (day === 3 && dayOfWeek === 1) {
-                        isBlocked = true;
-                        blockReason = "Next week Monday is blocked! Pick another day ❤️";
-                    }
-                }
-
-                if (isBlocked) {
-                    dateCell.style.backgroundColor = '#15131D';
-                    dateCell.style.color = '#3c374d';
-                    dateCell.style.cursor = 'not-allowed';
-                    dateCell.onclick = () => alert(blockReason);
-                } else {
-                    dateCell.style.backgroundColor = '#2A263D';
-                    dateCell.style.color = '#e5e5e5';
-                    dateCell.style.cursor = 'pointer';
-                    dateCell.onmouseover = () => { dateCell.style.backgroundColor = '#FF79A1'; dateCell.style.color = '#13111C'; };
-                    dateCell.onmouseout = () => { dateCell.style.backgroundColor = '#2A263D'; dateCell.style.color = '#e5e5e5'; };
-                    dateCell.onclick = () => {
-                        const dateString = currentDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
-                        saveChoice('date', dateString);
-                        
-                        const msg = `We are doing ${choices.activity}, eating ${choices.food}, on ${dateString}. Can't wait!`;
-                        document.getElementById('finalMessage').innerText = msg;
-                        nextStep(5);
-                    };
-                }
+                // All days are open and clickable
+                dateCell.style.backgroundColor = '#2A263D';
+                dateCell.style.color = '#e5e5e5';
+                dateCell.style.cursor = 'pointer';
+                dateCell.onmouseover = () => { dateCell.style.backgroundColor = '#FF79A1'; dateCell.style.color = '#13111C'; };
+                dateCell.onmouseout = () => { dateCell.style.backgroundColor = '#2A263D'; dateCell.style.color = '#e5e5e5'; };
+                dateCell.onclick = () => {
+                    const dateString = currentDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+                    saveChoice('date', dateString);
+                    
+                    const msg = `We are doing ${choices.activity}, eating ${choices.food}, on ${dateString}. Can't wait!`;
+                    document.getElementById('finalMessage').innerText = msg;
+                    nextStep(5);
+                };
+                
                 grid.appendChild(dateCell);
             }
-        }
-    </script>
+        }    </script>
 </body>
 </html>
